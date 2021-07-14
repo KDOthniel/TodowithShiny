@@ -4,20 +4,235 @@ data("gapminder")
 
 
 
-ui<-fluidPage( em("Add several more strings to fluidPage and run the app.
-               Nothing too exciting is happening yet, but you should just see all 
-               the text in one contiguous block."),
+ui<-fluidPage(
                
-  titlePanel("Welcome to the Gapminder Shiny App!"),
+  titlePanel(em("Welcome to the Gapminder Shiny App!")),
   
-  sidebarLayout(sidebarPanel("This is a our side Panel"),
-                mainPanel(strong("And this is the main Stuff!"))))
+  sidebarLayout(
+    
+    sidebarPanel(sliderInput("LE", "Life Expectancy", min=20, max=85,
+                              value = c(48,60), post = "years"),
+                 
+                 radioButtons("Cont","Continent", choices = c("Africa",
+                              "Americas","Asia","Europe","Oceania"),
+                              selected = "Africa"),
+                 
+                 numericInput("obs", "Observations:", min = 1, max = 100, 
+                              value =  10),
+                 
+                 selectInput("CountryInput","Country",
+                             choices = c("Benin","Rwanda","Ghana"),
+                             selected = "Ghana")),
+    
+    mainPanel(strong("And the results will be shown here!"))),
+  
+  
 
-server<-function(input,output){
   
-}
+  
+)
+
+
+server<-function(input,output){}
 
 shinyApp(ui=ui, server = server)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
