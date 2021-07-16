@@ -1,5 +1,6 @@
 library(shiny)
 library(gapminder)
+library(stargazer)
 data("gapminder")
 
 
@@ -24,16 +25,26 @@ ui<-fluidPage(
                              choices = c("Benin","Rwanda","Ghana"),
                              selected = "Ghana")),
     
-    mainPanel(strong("And the results will be shown here!"))),
-  
-  
-
-  
-  
+    mainPanel(plotOutput("coolplot"), 
+              
+              br(),
+              
+              tableOutput("results")
+              
+              )
+    )
 )
 
 
-server<-function(input,output){}
+
+server<-function(input,output){
+  
+  output$coolplot<-renderPlot({hist(rnorm(input$obs),pch=20,col="red")})
+  
+  output$results<-renderTable({stargazer(lm(rnorm(input$LE[1])~1),
+                                         type = "text")})
+
+}
 
 shinyApp(ui=ui, server = server)
 
